@@ -1,0 +1,34 @@
+<html>
+<head>
+<style>
+  img {
+    width: 100%;
+  }
+  button {
+    position: fixed;
+    top: 10vw;
+    right: 10vw;
+    font-size: 3vw;
+  }
+</style>
+</head>
+<body>
+
+  <img src="/orange.jpg" />
+  <button>SHARE THIS PICTURE</button>
+
+<script>
+if(navigator.share !== undefined) {
+    document.addEventListener('DOMContentLoaded', e => {
+      var shareBtn = document.querySelector('button');
+      shareBtn.addEventListener('click', clickEvent => {
+        clickEvent.preventDefault();
+        navigator.share({title: "picture", text: "picture of orange", url: window.location.href})
+          .then(() => console.log('Successful share'),
+           error => console.log('Error sharing:', error));
+      });
+    });
+}
+</script>
+</body>
+</html>

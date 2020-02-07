@@ -24,22 +24,53 @@
         top: 10vw;
         right: 10vw;
         font-size: 3vw;
-      }      
+      }
+      #fixed-text {
+        color: yellow;
+      }
       </style>
+      <script>
+        AFRAME.registerComponent('rotation-reader', {
+          tick: function () {
+            // `this.el` is the element.
+            // `object3D` is the three.js object.
+
+            // `rotation` is a three.js Euler using radians. `quaternion` also available.
+            // console.log(this.el.object3D.rotation);
+
+            var el = document.getElementById("fixed-text")
+            el.object3D.rotation.set(
+              this.el.object3D.rotation.x,
+              this.el.object3D.rotation.y,
+              this.el.object3D.rotation.z,
+            );
+
+            // `position` is a three.js Vector3.
+            //console.log(this.el.object3D.position);
+          }
+        });      
+      </script>
   </head>
   <body>
     <video playsinline autoplay></video>
     <img id="logo" src="2038-smallbox-3.png" />
     <button id="save">SAVE</button>
     <a-scene>
+      <a-entity camera rotation-reader look-controls position="0 1.6 0">
+        <a-text id="fixed-text" align="center" rotation="0 0 0" position="0 0 -2" value="The world
+        came to it's senses" color="yellow"></a-text>        
+      </a-entity>
       <a-text align="center" position="0 2 -2" value="Equality is our
        main objective"></a-text>
        <a-text align="center" position="2 2 -2" value="We call our time
        the new serenity"></a-text>
        <a-text align="center" rotation="0 90 0" position="-2 1 1" value="The world
-       came to it's senses"></a-text>       
+       came to it's senses"></a-text>
     </a-scene>
     <script>
+
+      /*** VIDEO SETUP ****/
+
       const constraints = {
         video: { facingMode: { exact: "environment" } }
       };
@@ -49,6 +80,7 @@
         .catch( error => // OverconstrainedError
           navigator.mediaDevices.getUserMedia({video:true}).then((stream) => {video.srcObject = stream}))
         
+      /**** BUTTON SETUP ****/
 
       var button = document.getElementById('save');
       button.addEventListener('click', function() {

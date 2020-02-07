@@ -10,23 +10,45 @@
     right: 10vw;
     font-size: 3vw;
   }
+
+  button + button {
+    top: 20vw;
+  }
 </style>
 </head>
 <body>
 
   <img src="/orange.jpg" />
-  <button>SHARE THIS PICTURE</button>
+  <button id="share">SHARE THIS URL</button>
+  <button id="save">SAVE THIIS PICTURE</button>
 
 <script>
 if(navigator.share !== undefined) {
     document.addEventListener('DOMContentLoaded', e => {
-      var shareBtn = document.querySelector('button');
+      
+      var shareBtn = document.querySelector('#share');
       shareBtn.addEventListener('click', clickEvent => {
         clickEvent.preventDefault();
-        navigator.share({title: "picture", text: "picture of orange", url: window.location.href})
+        navigator.share({
+          title: "picture", 
+          text: "picture of orange", 
+          url: window.location.href})
           .then(() => console.log('Successful share'),
            error => console.log('Error sharing:', error));
       });
+
+      var button = document.getElementById('save');
+
+      button.addEventListener('click', function() {
+          
+        var link = document.createElement('a');
+        link.download = 'orange.jpg';
+        link.href = "/orange.jpg";
+        link.click();
+
+      }, false);
+
+
     });
 }
 </script>

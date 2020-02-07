@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>2038 proto</title>
+    <meta name="description" content="2038 proto">
+    <script src="/aframe.1.0.2.min.js"></script>
+    <style>
+      video {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        top:0;
+      }
+      #logo {
+        position: fixed;
+        top:0;
+        left:50%;
+        transform: translateX(-50%);
+      }
+      button {
+        display: none; /*** BUTTON DISABLED ****/
+        position: fixed;
+        top: 10vw;
+        right: 10vw;
+        font-size: 3vw;
+      }      
+      </style>
+  </head>
+  <body>
+    <video playsinline autoplay></video>
+    <img id="logo" src="2038-smallbox-3.png" />
+    <button id="save">SAVE</button>
+    <a-scene>
+      <a-text align="center" position="0 2 -2" value="Equality is our
+       main objective"></a-text>
+       <a-text align="center" position="2 2 -2" value="We call our time
+       the new serenity"></a-text>
+       <a-text align="center" rotation="0 90 0" position="-2 1 1" value="The world
+       came to it's senses"></a-text>       
+    </a-scene>
+    <script>
+      const constraints = {
+        video: { facingMode: { exact: "environment" } }
+      };
+      const video = document.querySelector('video');
+      navigator.mediaDevices.getUserMedia(constraints)
+        .then((stream) => {video.srcObject = stream})
+        .catch( error => // OverconstrainedError
+          navigator.mediaDevices.getUserMedia({video:true}).then((stream) => {video.srcObject = stream}))
+        
+
+      var button = document.getElementById('save');
+      button.addEventListener('click', function() {
+
+          document.querySelector('a-scene').components.screenshot.capture('perspective')
+          alert("SAVE")
+          //var link = document.createElement('a');
+          //link.download = 'orange.jpg';
+          //link.href = "/orange.jpg";
+          //link.click();
+  
+        }, false);
+
+    </script>
+  </body>
+</html>

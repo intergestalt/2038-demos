@@ -19,11 +19,15 @@
         transform: translateX(-50%);
       }
       button {
-        display: none; /*** BUTTON DISABLED ****/
+        /*display: none; /*** BUTTON DISABLED ****/
         position: fixed;
-        top: 10vw;
-        right: 10vw;
-        font-size: 3vw;
+        bottom: 6vmax;
+        left: 50vw;
+        transform: translateX(-50%);
+        height: 6vmax;
+        border-radius: 3vmax;
+        font-size: 4vmax;
+        z-index: 10;
       }
       #fixed-text {
         color: yellow;
@@ -84,9 +88,8 @@
 
       var button = document.getElementById('save');
       button.addEventListener('click', function() {
-
+          console.log("SAVE")
           document.querySelector('a-scene').components.screenshot.capture('perspective')
-          alert("SAVE")
           //var link = document.createElement('a');
           //link.download = 'orange.jpg';
           //link.href = "/orange.jpg";

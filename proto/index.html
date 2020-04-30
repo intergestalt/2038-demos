@@ -11,7 +11,7 @@
       integrity="sha256-R7aNzoy2gFrVs+pNJ6+SokH04ppcEqJ0yFLkNGoFALQ="
       crossorigin="anonymous"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>            
-    <script src="/aframe.1.0.2.min.js"></script>
+    <script src="aframe.1.0.2.min.js"></script>
     <style>
       body {
         font-family: 'Roboto Mono', monospace;
@@ -41,6 +41,14 @@
       }
       #fixed-text {
         color: yellow;
+      }
+      #subtitle {
+        position: fixed;
+        bottom: 5rem;
+        text-align: center;
+        color: white;
+        width: 100%;
+        padding: 0.75rem;
       }
       footer {
         position: fixed;
@@ -97,6 +105,10 @@
        <a-text align="center" rotation="0 90 0" position="-2 1 1" value="The world
        came to it's senses"></a-text>
     </a-scene>
+
+    <div id="subtitle">
+      Es war einmal vor langer Zeit
+    </div>
 
     <footer>
       <div id="slide-container">
